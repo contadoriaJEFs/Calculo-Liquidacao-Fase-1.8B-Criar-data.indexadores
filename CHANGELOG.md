@@ -1,5 +1,86 @@
 # Changelog
 
+## Versão 3.4-alpha – Fase 1.8B – Base de Indexadores de Atualização (29/07/2026)
+
+### Adicionado
+- Criado o arquivo `data/indexadores.js`.
+- Criada a base compacta `BASE_INDEXADORES_ATUALIZACAO`.
+- Criado o catálogo de metadados `CATALOGO_INDEXADORES_ATUALIZACAO`.
+- Criada a função `montarIndexadoresAtualizacao()`.
+- Criada a estrutura final `INDEXADORES_ATUALIZACAO`.
+- Exposição global das estruturas:
+  - `window.BASE_INDEXADORES_ATUALIZACAO`;
+  - `window.CATALOGO_INDEXADORES_ATUALIZACAO`;
+  - `window.INDEXADORES_ATUALIZACAO`.
+- Incluídos dados iniciais de indexadores de correção monetária:
+  - INPC;
+  - IPCA-E;
+  - IPCA.
+- Incluídos indexadores vazios para expansão futura:
+  - IGP-DI;
+  - IGP-M;
+  - TR;
+  - IPC-R;
+  - IRSM;
+  - URV;
+  - OTN;
+  - ORTN;
+  - BTN;
+  - Juros de Mora 1% a.m.;
+  - Juros de Mora 0,5% a.m.;
+  - Poupança;
+  - Taxa Legal;
+  - SELIC.
+- Incluída chamada ao script `data/indexadores.js` no `index.html`, logo após `data/indices.js`.
+
+### Alterado
+- A base de indexadores foi estruturada em modelo híbrido:
+  - dados mensais concentrados em base compacta;
+  - metadados separados em catálogo;
+  - estrutura final montada automaticamente.
+- Mantida compatibilidade futura com acesso no formato:
+  `window.INDEXADORES_ATUALIZACAO.INPC.dados`.
+- Preservada a semelhança visual e lógica com a organização da base interna de reajustes previdenciários.
+- Mantida a separação entre:
+  - `data/indices.js`, destinado aos reajustes previdenciários, salário mínimo e teto;
+  - `data/indexadores.js`, destinado à atualização monetária, juros de mora, SELIC e taxa legal.
+
+### Preservado
+- Nenhuma alteração em `data/indices.js`.
+- Nenhuma alteração no motor previdenciário.
+- Nenhuma alteração na Guia 4.
+- Nenhuma alteração no JSON do caso.
+- Nenhuma alteração na tela administrativa da Fase 1.8A.
+- Nenhum cálculo financeiro implementado nesta fase.
+- Guia 5 continua apenas carregando parâmetros, sem realizar atualização monetária, juros, SELIC ou taxa legal.
+
+### Homologação
+
+Testes aprovados:
+
+- Sistema abriu sem erro crítico no Console.
+- `window.BASE_INDEXADORES_ATUALIZACAO` retornou a base compacta.
+- `window.CATALOGO_INDEXADORES_ATUALIZACAO` retornou os metadados.
+- `window.INDEXADORES_ATUALIZACAO` retornou a estrutura final completa.
+- Dados de INPC ficaram acessíveis por:
+  - `window.BASE_INDEXADORES_ATUALIZACAO.INPC`;
+  - `window.INDEXADORES_ATUALIZACAO.INPC.dados`.
+- Dados de IPCA-E ficaram acessíveis pela estrutura global.
+- Dados de IPCA ficaram acessíveis pela estrutura global.
+- Índices vazios foram preservados para expansão futura.
+- `window.INDEXADORES_ATUALIZACAO.SELIC.dados` retornou objeto vazio.
+- Importação e exportação do JSON do caso continuaram funcionando.
+- Guia 5 continuou carregando JSON de correção monetária e JSON de juros.
+- Tela administrativa continuou abrindo por `CTRL + SHIFT + E`.
+- Motor de evolução previdenciária permaneceu funcional.
+- Nenhum cálculo financeiro foi implementado nesta fase.
+
+### Observação Técnica
+Esta fase criou a base estrutural dos indexadores de atualização, ainda sem integração automática com a tela administrativa e sem motor de cálculo.  
+A base foi preparada para permitir que, em fase posterior, os encadeamentos carregados na Guia 5 consultem os índices disponíveis em `INDEXADORES_ATUALIZACAO`.
+
+---
+
 ## Versão 3.4-alpha – Fase 1.8A – Infraestrutura de Parâmetros de Atualização (29/07/2026)
 
 ### Adicionado
